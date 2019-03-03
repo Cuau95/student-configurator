@@ -1,10 +1,12 @@
 package com.titulation.student.configurator.infrastructure.controller;
 
+import com.titulation.student.configurator.domain.model.Student;
 import com.titulation.student.configurator.domain.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 public class StudentController {
@@ -17,11 +19,13 @@ public class StudentController {
     }
 
     @GetMapping("/")
-    public void getStudent() {
+    public Student getStudent() {
+        return studentService.getStudent();
     }
     
     @PostMapping("/")
-    public void postStudent() {
+    public Student postStudent(@RequestBody Student student) {
+        return studentService.saveStudent(student);
     }
 
 }
