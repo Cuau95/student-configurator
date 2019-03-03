@@ -1,14 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.titulation.student.configurator.domain.service;
 
-/**
- *
- * @author elzua
- */
+import com.titulation.student.configurator.domain.model.Student;
+import com.titulation.student.configurator.domain.repository.StudentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
 public class StudentService {
     
+    private StudentRepository studentRepository;
+
+    @Autowired
+    public StudentService(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
+    }
+    
+    public Student getStudent() {
+        return null;
+    }
+    
+    public Student saveStudent(Student student) {
+        return null;
+    }
 }

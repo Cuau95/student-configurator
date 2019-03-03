@@ -1,14 +1,27 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.titulation.student.configurator.infrastructure.controller;
 
-/**
- *
- * @author elzua
- */
+import com.titulation.student.configurator.domain.service.StudentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+@Controller
 public class StudentController {
+
+    private StudentService studentService;
+
+    @Autowired
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
+    }
+
+    @GetMapping("/")
+    public void getStudent() {
+    }
     
+    @PostMapping("/")
+    public void postStudent() {
+    }
+
 }
