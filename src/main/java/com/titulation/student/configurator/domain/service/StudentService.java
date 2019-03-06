@@ -15,7 +15,7 @@ public class StudentService {
         this.studentRepository = studentRepository;
     }
     
-    public Student getStudent() {
+    public Student getStudent(String boleta) {
         return null;
     }
     
