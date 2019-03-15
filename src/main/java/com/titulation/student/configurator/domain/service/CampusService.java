@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CampusService {
     
-    private final CampusRepository campusRepository;
+    private CampusRepository campusRepository;
 
     @Autowired
     public CampusService(CampusRepository campusRepository) {

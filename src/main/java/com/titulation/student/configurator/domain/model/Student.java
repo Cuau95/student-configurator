@@ -5,6 +5,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -12,24 +14,26 @@ import javax.persistence.Table;
 public class Student implements Serializable {
 
     @Id
-    private String id;
+    private String idAlumno;
     private String nombreAlumno;
     @Column(name = "Papellido")
     private String pApellido;
     @Column(name = "Mapellido")
     private String mApellido;
     private String nombreCompleto;
-    @ManyToOne
-    private Campus campus;
-    @ManyToOne
-    private Career career;
+    @OneToOne
+    @PrimaryKeyJoinColumn(name="id_escuela", referencedColumnName="id_escuela")
+    private Campus idEscuela;
+    @OneToOne
+    @PrimaryKeyJoinColumn(name="id_carrera", referencedColumnName="id_carrera")
+    private Career idCarrera;
 
     public String getId() {
-        return id;
+        return idAlumno;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.idAlumno = id;
     }
 
     public String getNombreAlumno() {
@@ -65,19 +69,19 @@ public class Student implements Serializable {
     }
 
     public Campus getCampus() {
-        return campus;
+        return idEscuela;
     }
 
     public void setCampus(Campus campus) {
-        this.campus = campus;
+        this.idEscuela = campus;
     }
 
     public Career getCareer() {
-        return career;
+        return idCarrera;
     }
 
     public void setCareer(Career career) {
-        this.career = career;
+        this.idCarrera = career;
     }
     
 }

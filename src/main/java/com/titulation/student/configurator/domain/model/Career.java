@@ -12,16 +12,16 @@ import javax.persistence.Table;
 public class Career implements Serializable {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idCarrera;
     private String nombreCarrera;
 
-    public Integer getId() {
-        return id;
+    public Integer getIdCarrera() {
+        return idCarrera;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdCarrera(Integer idCarrera) {
+        this.idCarrera = idCarrera;
     }
 
     public String getNombreCarrera() {
