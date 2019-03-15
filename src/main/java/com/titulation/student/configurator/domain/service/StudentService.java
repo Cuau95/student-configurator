@@ -20,6 +20,6 @@ public class StudentService {
     }
     
     public Student saveStudent(Student student) {
-        return null;
+        return studentRepository.save(student);
     }
 }
