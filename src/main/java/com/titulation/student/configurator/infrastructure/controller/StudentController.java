@@ -2,8 +2,8 @@ package com.titulation.student.configurator.infrastructure.controller;
 
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.HttpStatus.FOUND;
-import static org.springframework.http.HttpStatus.NOT_FOUND;
-import static org.springframework.http.HttpStatus.NOT_MODIFIED;
+//import static org.springframework.http.HttpStatus.NOT_FOUND;
+//import static org.springframework.http.HttpStatus.NOT_MODIFIED;
 
 import com.titulation.student.configurator.domain.model.Student;
 import com.titulation.student.configurator.domain.service.StudentService;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @Controller
 public class StudentController {
 
-    private StudentService studentService;
+    private final StudentService studentService;
 
     @Autowired
     public StudentController(StudentService studentService) {
