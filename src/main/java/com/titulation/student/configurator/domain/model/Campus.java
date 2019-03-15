@@ -12,16 +12,16 @@ import javax.persistence.Table;
 public class Campus implements Serializable {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    //@GeneratedValue(strategy = GenerationType.AUTO)
+    private int idEscuela;
     private String nombreEscuela;
 
-    public Integer getId() {
-        return id;
+    public Integer getIdEscuela() {
+        return idEscuela;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdEscuela(Integer id) {
+        this.idEscuela = id;
     }
 
     public String getNombreEscuela() {

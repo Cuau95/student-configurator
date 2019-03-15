@@ -8,12 +8,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 public class CampusController {
-    
+
     private CampusService campusService;
-    
+
     @GetMapping("/campus")
     public Campus saveCampus(@RequestBody Campus campus) {
-        return campusService.saveCampus(campus);
+        try {
+            return campusService.saveCampus(campus);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
-    
+
 }
