@@ -5,11 +5,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="escuelas")
 public class Campus implements Serializable {
+
+    @OneToOne(mappedBy = "idEscuela")
+    private Student student;
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
