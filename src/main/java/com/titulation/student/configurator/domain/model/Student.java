@@ -1,11 +1,13 @@
 package com.titulation.student.configurator.domain.model;
 
 import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
@@ -21,10 +23,10 @@ public class Student implements Serializable {
     @Column(name = "Mapellido")
     private String mApellido;
     private String nombreCompleto;
-    @OneToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @PrimaryKeyJoinColumn(name="id_escuela", referencedColumnName="id_escuela")
     private Campus idEscuela;
-    @OneToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @PrimaryKeyJoinColumn(name="id_carrera", referencedColumnName="id_carrera")
     private Career idCarrera;
 

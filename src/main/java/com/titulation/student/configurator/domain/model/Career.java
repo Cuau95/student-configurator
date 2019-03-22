@@ -1,18 +1,20 @@
 package com.titulation.student.configurator.domain.model;
 
 import java.io.Serializable;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="carreras")
 public class Career implements Serializable {
 
-    @OneToOne(mappedBy = "idCarrera")
+    @OneToMany(mappedBy = "idCarrera", fetch=FetchType.LAZY)
     private Student student;
     
     @Id
