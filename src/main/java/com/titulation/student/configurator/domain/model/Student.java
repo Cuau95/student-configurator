@@ -1,12 +1,13 @@
 package com.titulation.student.configurator.domain.model;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,14 +22,12 @@ public class Student implements Serializable {
     @Column(name = "Mapellido")
     private String mApellido;
     private String nombreCompleto;
-    @OneToOne
-    //@ManyToOne
-    @PrimaryKeyJoinColumn(name="id_escuela", referencedColumnName="id_escuela")
-    private Campus idEscuela;
-    @OneToOne
-    //@ManyToOne
-    @PrimaryKeyJoinColumn(name="id_carrera", referencedColumnName="id_carrera")
-    private Career idCarrera;
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="id_escuela")
+    private Campus escuela;
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="id_carrera")
+    private Career carrera;
 
     public String getId() {
         return idAlumno;
@@ -71,19 +70,19 @@ public class Student implements Serializable {
     }
 
     public Campus getCampus() {
-        return idEscuela;
+        return escuela;
     }
 
     public void setCampus(Campus campus) {
-        this.idEscuela = campus;
+        this.escuela = campus;
     }
 
     public Career getCareer() {
-        return idCarrera;
+        return carrera;
     }
 
     public void setCareer(Career career) {
-        this.idCarrera = career;
+        this.carrera = career;
     }
     
 }

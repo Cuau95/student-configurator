@@ -18,6 +18,8 @@ public class Campus implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idEscuela;
     private String nombreEscuela;
+    @OneToMany(mappedBy="escuela")
+    private List<Student> students;
 
     public int getIdEscuela() {
         return idEscuela;
