@@ -2,6 +2,7 @@ package com.titulation.student.configurator.domain.service;
 
 import com.titulation.student.configurator.domain.model.Campus;
 import com.titulation.student.configurator.domain.repository.CampusRepository;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +16,8 @@ public class CampusService {
         this.campusRepository = campusRepository;
     }
     
-    public Campus saveCampus(Campus campus) {
-        return campusRepository.save(campus);
+    public List<Campus> getCampusByName(String campus) {
+        return campusRepository.findByNombreEscuela(campus);
     }
     
 }
