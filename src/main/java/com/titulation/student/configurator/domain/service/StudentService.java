@@ -2,6 +2,7 @@ package com.titulation.student.configurator.domain.service;
 
 import com.titulation.student.configurator.domain.model.Student;
 import com.titulation.student.configurator.domain.repository.StudentRepository;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +16,8 @@ public class StudentService {
         this.studentRepository = studentRepository;
     }
     
-    public Student getStudent(String boleta) {
-        return null;
+    public List<Student> getStudent(String boleta) {
+        return studentRepository.findByIdAlumno(boleta);
     }
     
     public Student saveStudent(Student student) {

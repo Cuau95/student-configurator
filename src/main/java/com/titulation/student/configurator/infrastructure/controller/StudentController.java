@@ -7,6 +7,7 @@ import static org.springframework.http.HttpStatus.FOUND;
 
 import com.titulation.student.configurator.domain.model.Student;
 import com.titulation.student.configurator.domain.service.StudentService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -14,8 +15,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/student") 
 public class StudentController {
 
     private final StudentService studentService;
@@ -25,12 +28,12 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @GetMapping("/student/boleta/{boleta}")
-    public ResponseEntity<Student> getStudent(@PathVariable("boleta") String boleta) {
+    @GetMapping("/boleta/{boleta}")
+    public ResponseEntity<List<Student>> getStudent(@PathVariable("boleta") String boleta) {
         return new ResponseEntity<>(studentService.getStudent(boleta), OK);
     }
 
-    @PostMapping("/student/{boleta}")
+    @PostMapping("/id/{boleta}")
     public ResponseEntity<Student> postStudent(@RequestBody Student student, @PathVariable("boleta") String boleta) {
         student.setId(boleta);
         return new ResponseEntity<>(studentService.saveStudent(student), FOUND);
