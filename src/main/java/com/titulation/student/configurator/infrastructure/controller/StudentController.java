@@ -33,7 +33,7 @@ public class StudentController {
     }
 
     @GetMapping("/boleta/{boleta}")
-    public ResponseEntity<List<Student>> getStudent(@PathVariable("boleta") String boleta) {
+    public ResponseEntity<Student> getStudent(@PathVariable("boleta") String boleta) {
         return new ResponseEntity<>(studentService.getStudent(boleta), OK);
     }
 
