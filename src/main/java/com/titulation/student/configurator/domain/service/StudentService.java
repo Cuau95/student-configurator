@@ -16,7 +16,11 @@ public class StudentService {
     }
     
     public Student getStudent(String boleta) {
-        return studentRepository.findByIdAlumno(boleta).get(0);
+        try{
+            return studentRepository.findByIdAlumno(boleta).get(0);
+        }catch(Exception e){
+            return null;
+        }
     }
     
     public Student saveStudent(Student student) {
