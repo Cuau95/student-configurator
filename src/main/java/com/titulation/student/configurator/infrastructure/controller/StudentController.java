@@ -4,7 +4,7 @@ import com.titulation.student.configurator.domain.model.ContactStudent;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.HttpStatus.FOUND;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
-//import static org.springframework.http.HttpStatus.NOT_MODIFIED;
+import static org.springframework.http.HttpStatus.NOT_MODIFIED;
 
 import com.titulation.student.configurator.domain.model.Student;
 import com.titulation.student.configurator.domain.service.ContactStudentService;
@@ -35,24 +35,25 @@ public class StudentController {
     @GetMapping("/boleta/{boleta}")
     public ResponseEntity<Student> getStudent(@PathVariable("boleta") String boleta) {
         Student student = studentService.getStudent(boleta);
-        return (student == null) ? new ResponseEntity<>(student, NOT_FOUND) : new ResponseEntity<>(student, OK);
+        return (student == null) ? new ResponseEntity<>(student, NOT_FOUND) : new ResponseEntity<>(student, FOUND);
     }
 
     @PostMapping("/id/{boleta}")
     public ResponseEntity<Student> postStudent(@RequestBody Student student, @PathVariable("boleta") String boleta) {
         student.setId(boleta);
-        return new ResponseEntity<>(studentService.saveStudent(student), FOUND);
+        Student studentSaved = studentService.saveStudent(student);
+        return (studentSaved == null) ? new ResponseEntity<>(studentSaved, NOT_MODIFIED) : new ResponseEntity<>(studentSaved, OK);
     }
 
     @GetMapping("/contacto/boleta/{boleta}")
     public ResponseEntity<List<ContactStudent>> getContactStudent(@PathVariable("boleta") String boleta) {
-        return new ResponseEntity<>(contactStudentService.getContactStudentById(boleta), OK);
+        return new ResponseEntity<>(contactStudentService.getContactStudentById(boleta), FOUND);
     }
 
     @PostMapping("/contacto/id/{boleta}")
     public ResponseEntity<ContactStudent> postContactStudent(@RequestBody ContactStudent contactStudent, @PathVariable("boleta") String boleta) {
         contactStudent.setIdAlumno(boleta);
-        return new ResponseEntity<>(contactStudentService.saveContactStudent(contactStudent), FOUND);
+        return new ResponseEntity<>(contactStudentService.saveContactStudent(contactStudent), OK);
     }
 
 }

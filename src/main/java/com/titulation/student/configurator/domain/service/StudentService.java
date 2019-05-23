@@ -24,6 +24,10 @@ public class StudentService {
     }
     
     public Student saveStudent(Student student) {
-        return studentRepository.save(student);
+        try{
+            return studentRepository.save(student);
+        } catch(Exception ex) {
+            return null;
+        }
     }
 }
