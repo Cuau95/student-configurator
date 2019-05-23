@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -58,6 +59,7 @@ public class StudentController {
         return new ResponseEntity<>(contactStudentService.saveContactStudent(contactStudent), OK);
     }
     
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/usuario/{idStudent}/password/{password}")
     public ResponseEntity<PasswordResponse> passwordCheck(@PathVariable("idStudent") String idStudent, 
             @PathVariable("password") String password) {
