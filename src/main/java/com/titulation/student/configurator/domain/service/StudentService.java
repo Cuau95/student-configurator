@@ -7,27 +7,38 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class StudentService {
-    
+
     private final StudentRepository studentRepository;
 
     @Autowired
     public StudentService(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
     }
-    
+
     public Student getStudent(String boleta) {
-        try{
+        try {
             return studentRepository.findByIdAlumno(boleta).get(0);
-        }catch(Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
-    
+
     public Student saveStudent(Student student) {
-        try{
+        try {
             return studentRepository.save(student);
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             return null;
+        }
+    }
+
+    public String passwordCheck(String idStudent, String password) {
+        try {
+            if (getStudent(idStudent).getPassword().equals(password)) {
+                return "pass";
+            }
+            return "not_pass";
+        } catch (Exception ex) {
+            return "not_found";
         }
     }
 }

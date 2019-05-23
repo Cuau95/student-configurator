@@ -11,6 +11,7 @@ import com.titulation.student.configurator.domain.service.ContactStudentService;
 import com.titulation.student.configurator.domain.service.StudentService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -54,6 +55,17 @@ public class StudentController {
     public ResponseEntity<ContactStudent> postContactStudent(@RequestBody ContactStudent contactStudent, @PathVariable("boleta") String boleta) {
         contactStudent.setIdAlumno(boleta);
         return new ResponseEntity<>(contactStudentService.saveContactStudent(contactStudent), OK);
+    }
+    
+    @GetMapping("/usuario/{idStudent}/password/{password}")
+    public ResponseEntity<String> passwordCheck(@PathVariable("idStudent") String idStudent, 
+            @PathVariable("password") String password) {
+        String passwordCheck = studentService.passwordCheck(idStudent, password);
+        HttpStatus status = NOT_FOUND;
+        if(passwordCheck.equals("pass")) {
+            status = OK;
+        }
+        return new ResponseEntity<>(passwordCheck, status);
     }
 
 }
