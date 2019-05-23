@@ -1,6 +1,7 @@
 package com.titulation.student.configurator.infrastructure.controller;
 
 import com.titulation.student.configurator.domain.model.ContactStudent;
+import com.titulation.student.configurator.domain.model.PasswordResponse;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.HttpStatus.FOUND;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
@@ -58,14 +59,16 @@ public class StudentController {
     }
     
     @GetMapping("/usuario/{idStudent}/password/{password}")
-    public ResponseEntity<String> passwordCheck(@PathVariable("idStudent") String idStudent, 
+    public ResponseEntity<PasswordResponse> passwordCheck(@PathVariable("idStudent") String idStudent, 
             @PathVariable("password") String password) {
+        PasswordResponse passwordResponse = new PasswordResponse();
         String passwordCheck = studentService.passwordCheck(idStudent, password);
+        passwordResponse.setPasswordResponse(passwordCheck);
         HttpStatus status = NOT_FOUND;
         if(passwordCheck.equals("pass")) {
             status = OK;
         }
-        return new ResponseEntity<>(passwordCheck, status);
+        return new ResponseEntity<>(passwordResponse, status);
     }
 
 }
