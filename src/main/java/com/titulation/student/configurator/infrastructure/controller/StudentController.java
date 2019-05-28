@@ -48,9 +48,10 @@ public class StudentController {
         return (studentSaved == null) ? new ResponseEntity<>(studentSaved, NOT_MODIFIED) : new ResponseEntity<>(studentSaved, OK);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/contacto/boleta/{boleta}")
     public ResponseEntity<List<ContactStudent>> getContactStudent(@PathVariable("boleta") String boleta) {
-        return new ResponseEntity<>(contactStudentService.getContactStudentById(boleta), FOUND);
+        return new ResponseEntity<>(contactStudentService.getContactStudentById(boleta), OK);
     }
 
     @PostMapping("/contacto/id/{boleta}")
