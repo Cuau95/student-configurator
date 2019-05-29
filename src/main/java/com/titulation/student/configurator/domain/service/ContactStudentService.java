@@ -16,7 +16,7 @@ public class ContactStudentService {
         this.contactStudentRepository = contactStudentRepository;
     }
     
-    public List<ContactStudent> getContactStudentById(String idAlumno) {
+    public ContactStudent getContactStudentById(String idAlumno) {
         return contactStudentRepository.findByIdAlumno(idAlumno);
     }
     

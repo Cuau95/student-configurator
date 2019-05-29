@@ -35,12 +35,14 @@ public class StudentController {
         this.contactStudentService = contactStudent;
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/boleta/{boleta}")
     public ResponseEntity<Student> getStudent(@PathVariable("boleta") String boleta) {
         Student student = studentService.getStudent(boleta);
-        return (student == null) ? new ResponseEntity<>(student, NOT_FOUND) : new ResponseEntity<>(student, FOUND);
+        return (student == null) ? new ResponseEntity<>(student, NOT_FOUND) : new ResponseEntity<>(student, OK);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/id/{boleta}")
     public ResponseEntity<Student> postStudent(@RequestBody Student student, @PathVariable("boleta") String boleta) {
         student.setId(boleta);
@@ -50,10 +52,11 @@ public class StudentController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/contacto/boleta/{boleta}")
-    public ResponseEntity<List<ContactStudent>> getContactStudent(@PathVariable("boleta") String boleta) {
+    public ResponseEntity<ContactStudent> getContactStudent(@PathVariable("boleta") String boleta) {
         return new ResponseEntity<>(contactStudentService.getContactStudentById(boleta), OK);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/contacto/id/{boleta}")
     public ResponseEntity<ContactStudent> postContactStudent(@RequestBody ContactStudent contactStudent, @PathVariable("boleta") String boleta) {
         contactStudent.setIdAlumno(boleta);
